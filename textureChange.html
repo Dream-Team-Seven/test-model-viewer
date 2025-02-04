@@ -11,7 +11,7 @@
 
 <body>
 
-    <model-viewer style="height: 500px" id="sphere" camera-controls touch-action="pan-y" interaction-prompt="none"
+    <model-viewer style="height: 500px" id="spaceman" camera-controls touch-action="pan-y" interaction-prompt="none"
         src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar alt="A 3D model of a sphere">
         <div class="controls">
             <div>
@@ -26,7 +26,7 @@
     </model-viewer>
 
     <script>
-        const modelViewerParameters = document.querySelector("model-viewer#sphere");
+        const modelViewerParameters = document.querySelector("model-viewer#spaceman");
 
         modelViewerParameters.addEventListener("load", (ev) => {
 
@@ -39,7 +39,7 @@
             roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
 
             // Defaults to gold
-            material.pbrMetallicRoughness.setBaseColorFactor([0.7294, 0.5333, 0.0392]);
+            // material.pbrMetallicRoughness.setBaseColorFactor([0.7294, 0.5333, 0.0392]);
 
             document.querySelector('#metalness').addEventListener('input', (event) => {
                 material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
