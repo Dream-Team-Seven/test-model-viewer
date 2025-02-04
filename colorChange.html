@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Viewer with Variants</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.1.0/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <!-- The model-viewer element displaying the model -->
+  <model-viewer style="height: 500px;" id="color" camera-controls touch-action="pan-y" interaction-prompt="none" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar alt="A 3D model of an astronaut"></model-viewer>
+    <div class="controls" id="color-controls">
+      <button data-color="#ff0000">Red</button>
+      <button data-color="#00ff00">Green</button>
+      <button data-color="#0000ff">Blue</button>
+    </div>
+  </model-viewer>
+  <script>
+  const modelViewerColor = document.querySelector("model-viewer#color");
+  
+  document.querySelector('#color-controls').addEventListener('click', (event) => {
+    const colorString = event.target.dataset.color;
+    const [material] = modelViewerColor.model.materials;
+    material.pbrMetallicRoughness.setBaseColorFactor(colorString);
+  });
+  </script>
+
+</body>
+
+</html>
