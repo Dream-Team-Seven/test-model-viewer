@@ -12,6 +12,13 @@
             height: 500px;
             border: 1px solid black;
         }
+        #variant-buttons {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 16px;
+        }
     </style>
 </head>
 
@@ -20,9 +27,12 @@
     <model-viewer id="model-viewer"
         src="https://firebasestorage.googleapis.com/v0/b/polymuse-68692.appspot.com/o/models%2F20250205124059197%2FSheenChair.glb?alt=media&token=19402c2b-bb92-499e-83bf-d49c263bb09c"
         alt="A 3D model of a chair" auto-rotate camera-controls></model-viewer>
+    
+    <div id="variant-buttons"></div>
 
     <script>
         const modelViewer = document.getElementById('model-viewer');
+        const variantButtonsContainer = document.getElementById('variant-buttons');
 
         modelViewer.addEventListener('load', () => {
             const materials = modelViewer.model.materials;
@@ -31,6 +41,20 @@
             // Check for available variants
             const variants = modelViewer.availableVariants;
             console.log('Available variants:', variants);
+
+            // Create buttons for each variant
+            if (variants && variants.length > 0) {
+                variants.forEach(variant => {
+                    const button = document.createElement('button');
+                    button.textContent = variant;
+                    button.addEventListener('click', () => {
+                        modelViewer.variantName = variant;
+                    });
+                    variantButtonsContainer.appendChild(button);
+                });
+            } else {
+                variantButtonsContainer.textContent = 'No variants available';
+            }
         });
     </script>
 </body>
