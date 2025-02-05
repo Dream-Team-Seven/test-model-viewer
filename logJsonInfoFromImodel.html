@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chair Model Viewer</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>3D Chair Model Viewer</h1>
+    <model-viewer id="model-viewer" src="chair/scene.gltf" alt="A 3D model of a chair" auto-rotate
+        camera-controls></model-viewer>
+
+    <script>
+        const modelViewer = document.getElementById('model-viewer');
+
+        function switchTexture(index) {
+            const material = modelViewer.model.materials[0];
+            material.pbrMetallicRoughness.baseColorTexture.index = index;
+        }
+
+        fetch('chair/scene.gltf')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    </script>
+</body>
+
+</html>
